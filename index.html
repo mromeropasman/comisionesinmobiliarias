@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>depptÃ¶ â Comisiones (versiÃ³n compacta)</title>
+  <title>depptö — Esquema Comisional del Agente</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -66,6 +66,17 @@
     }
     .header-brand em { color: var(--secondary); font-style: normal; }
 
+    /* CONTEXT BANNER */
+    .context-banner {
+      background: #EEF0FF;
+      border-left: 3px solid var(--primary);
+      padding: 12px 40px;
+      font-size: 11px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .context-banner strong { color: var(--primary); }
+
     /* BODY */
     .body { padding: 28px 40px 32px; display: flex; flex-direction: column; gap: 22px; }
 
@@ -74,7 +85,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .section-dot {
       width: 8px; height: 8px;
@@ -98,6 +109,30 @@
       background: var(--border);
     }
 
+    /* COMMISSION INFO BAR */
+    .commission-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .commission-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 12px;
+      font-size: 10.5px;
+    }
+    .commission-pill .pill-label { color: var(--grey); }
+    .commission-pill .pill-value { font-weight: 700; color: var(--primary); }
+    .commission-pill.amber .pill-value { color: #8B6000; }
+    .commission-pill .pill-sep {
+      width: 1px; height: 12px;
+      background: var(--border);
+    }
+
     /* DIVIDER */
     .divider {
       height: 1px;
@@ -108,7 +143,7 @@
     /* GRID DE 2 COL */
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-    /* CARD DE MÃDULO */
+    /* CARD DE MÓDULO */
     .module-card {
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -166,17 +201,6 @@
       text-align: right;
     }
     .row-pct.amber-pct { color: #8B6000; }
-
-    .subtotal-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 14px;
-      background: #EEF0FF;
-    }
-    .subtotal-row.amber-sub { background: #FFF5E0; }
-    .subtotal-row span:first-child { font-size: 11px; font-weight: 700; color: var(--primary); }
-    .subtotal-row span:last-child  { font-size: 13px; font-weight: 700; color: var(--primary); }
-    .subtotal-row.amber-sub span { color: #8B6000; }
 
     /* TOTAL BANNER */
     .total-banner {
@@ -256,26 +280,51 @@
   <!-- HEADER -->
   <div class="header">
     <div class="header-title">
-      <small>Estructura de Comisiones Â· 2025</small>
+      <small>Estructura de Comisiones · 2025</small>
       <h1>Esquema <span>Comisional</span> del Agente</h1>
     </div>
-    <div class="header-brand">deppt<em>Ã¶</em></div>
+    <div class="header-brand">deppt<em>ö</em></div>
+  </div>
+
+  <!-- CONTEXTO -->
+  <div class="context-banner">
+    Los porcentajes indican cómo se distribuye el <strong>50% de la comisión total</strong> que corresponde al agente.
+    El otro 50% queda en depptö. Los porcentajes de comisión total sobre la operación varían según el tipo:
+    <strong>Emprendimientos externos → 5%</strong> (4% comprador + 1% desarrollador) ·
+    <strong>Propiedades usadas → 7%</strong> (Capital Federal) o <strong>7%</strong> (Provincia: 4% + 3%).
   </div>
 
   <div class="body">
 
-    <!-- ââ EMPRENDIMIENTOS ââ -->
+    <!-- ── EMPRENDIMIENTOS ── -->
     <div>
       <div class="section-head">
         <div class="section-dot dot-primary"></div>
         <h3>Emprendimientos en pozo</h3>
       </div>
 
-      <!-- CaptaciÃ³n -->
-      <div class="section-label">CaptaciÃ³n / ProducciÃ³n</div>
+      <!-- Comisión info bar -->
+      <div class="commission-bar">
+        <div class="commission-pill">
+          <span class="pill-label">Comisión total operación</span>
+          <div class="pill-sep"></div>
+          <span class="pill-value">5%</span>
+        </div>
+        <div class="commission-pill">
+          <span class="pill-label">4% comprador + 1% desarrollador</span>
+        </div>
+        <div class="commission-pill">
+          <span class="pill-label">El agente gestiona</span>
+          <div class="pill-sep"></div>
+          <span class="pill-value">50% de la comisión</span>
+        </div>
+      </div>
+
+      <!-- Captación -->
+      <div class="section-label">Captación / Producción</div>
       <div class="module-card" style="margin-bottom: 12px;">
         <div class="module-head blue">
-          <h4>CaptaciÃ³n / ProducciÃ³n</h4>
+          <h4>Captación / Producción</h4>
           <span class="total-badge">Subtotal 15%</span>
         </div>
         <div class="module-rows">
@@ -284,7 +333,7 @@
             <span class="row-pct">10%</span>
           </div>
           <div class="row">
-            <span class="row-label">Realizar la captaciÃ³n y preparaciÃ³n inicial para comenzar la comercializaciÃ³n <sup>(1)</sup></span>
+            <span class="row-label">Realizar la captación y preparación inicial para comenzar la comercialización <sup>(1)</sup></span>
             <span class="row-pct">5%</span>
           </div>
         </div>
@@ -314,7 +363,7 @@
               <span class="row-pct">5%</span>
             </div>
             <div class="row">
-              <span class="row-label">Atender consultas y enviar informaciÃ³n</span>
+              <span class="row-label">Atender consultas y enviar información</span>
               <span class="row-pct">5%</span>
             </div>
             <div class="row">
@@ -352,30 +401,47 @@
       <div class="notes" style="margin-top:10px;">
         <div class="note">
           <div class="note-num">1</div>
-          <p>Conseguir y cargar al disco corporativo toda la documentaciÃ³n legal y material comercial, y coordinar con el vendedor (in-house) la forma de trabajo.</p>
+          <p>Conseguir y cargar al disco corporativo toda la documentación legal y material comercial, y coordinar con el vendedor (in-house) la forma de trabajo.</p>
         </div>
         <div class="note">
           <div class="note-num">2</div>
-          <p>Se debe coordinar con el AGENTE que sea responsable del Emprendimiento en cuestiÃ³n.</p>
+          <p>Se debe coordinar con el AGENTE que sea responsable del Emprendimiento en cuestión.</p>
         </div>
       </div>
     </div>
 
     <div class="divider"></div>
 
-    <!-- ââ PROPIEDADES USADAS ââ -->
+    <!-- ── PROPIEDADES USADAS ── -->
     <div>
       <div class="section-head">
         <div class="section-dot dot-secondary"></div>
         <h3>Propiedades Usadas</h3>
       </div>
 
+      <!-- Comisión info bar -->
+      <div class="commission-bar">
+        <div class="commission-pill">
+          <span class="pill-label">Comisión total operación</span>
+          <div class="pill-sep"></div>
+          <span class="pill-value amber">7%</span>
+        </div>
+        <div class="commission-pill">
+          <span class="pill-label">Capital Federal · Provincia: 4% + 3%</span>
+        </div>
+        <div class="commission-pill">
+          <span class="pill-label">El agente gestiona</span>
+          <div class="pill-sep"></div>
+          <span class="pill-value">50% de la comisión</span>
+        </div>
+      </div>
+
       <div class="grid-2">
 
-        <!-- CaptaciÃ³n -->
+        <!-- Captación -->
         <div class="module-card">
           <div class="module-head blue">
-            <h4>CaptaciÃ³n / ProducciÃ³n</h4>
+            <h4>Captación / Producción</h4>
             <span class="total-badge">25%</span>
           </div>
           <div class="module-rows">
@@ -384,7 +450,7 @@
               <span class="row-pct">15%</span>
             </div>
             <div class="row">
-              <span class="row-label">Realizar la captaciÃ³n de la propiedad</span>
+              <span class="row-label">Realizar la captación de la propiedad</span>
               <span class="row-pct">10%</span>
             </div>
           </div>
@@ -398,7 +464,7 @@
           </div>
           <div class="module-rows">
             <div class="row">
-              <span class="row-label">AnÃ¡lisis Comparativo de Mercado (ACM)</span>
+              <span class="row-label">Análisis Comparativo de Mercado (ACM)</span>
               <span class="row-pct amber-pct">5%</span>
             </div>
             <div class="row">
@@ -424,7 +490,7 @@
 
       <!-- Total Propiedades Usadas -->
       <div class="total-banner" style="margin-top:12px;">
-        <span>Total ComisiÃ³n del Agente â Propiedades Usadas</span>
+        <span>Total Comisión del Agente — Propiedades Usadas</span>
         <span>50%</span>
       </div>
 
@@ -432,11 +498,11 @@
       <div class="notes" style="margin-top:10px;">
         <div class="note">
           <div class="note-num">1</div>
-          <p>Si la labor la realiza el AGENTE debe usar buenos equipos y programas de ediciÃ³n que permitan calidad Ã³ptima y cumplir estÃ¡ndares corporativos. Si contrata fotÃ³grafos, deberÃ¡ estar presente.</p>
+          <p>Si la labor la realiza el AGENTE debe usar buenos equipos y programas de edición que permitan calidad óptima y cumplir estándares corporativos. Si contrata fotógrafos, deberá estar presente.</p>
         </div>
         <div class="note">
           <div class="note-num">2</div>
-          <p>Si participa mÃ¡s de un AGENTE para coordinar visitas o mostrar la propiedad, el porcentaje se dividirÃ¡ entre ellos en funciÃ³n de su participaciÃ³n.</p>
+          <p>Si participa más de un AGENTE para coordinar visitas o mostrar la propiedad, el porcentaje se dividirá entre ellos en función de su participación.</p>
         </div>
       </div>
     </div>
@@ -444,8 +510,8 @@
   </div>
 
   <div class="footer">
-    <div class="footer-brand">deppt<em>Ã¶</em> Â· Servicios Inmobiliarios</div>
-    <div class="footer-note">Estructura comisional interna Â· 2025</div>
+    <div class="footer-brand">deppt<em>ö</em> · Servicios Inmobiliarios</div>
+    <div class="footer-note">Estructura comisional interna · 2025</div>
   </div>
 
 </div>
