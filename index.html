@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>depptÃ¶ â Comisiones (versiÃ³n compacta)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary:   #404BFC;
+      --secondary: #FFB12A;
+      --text:      #515151;
+      --grey:      #B2B0B0;
+      --white:     #FFFFFF;
+      --bg:        #F7F7FB;
+      --border:    #E8E8F0;
+      --font:      'Poppins', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      width: 794px;
+      background: var(--white);
+      margin: 32px auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 40px rgba(64,75,252,0.08);
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--primary);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-title { color: var(--white); }
+    .header-title small {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 4px;
+    }
+    .header-title h1 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .header-title h1 span { color: var(--secondary); }
+    .header-brand {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .header-brand em { color: var(--secondary); font-style: normal; }
+
+    /* BODY */
+    .body { padding: 28px 40px 32px; display: flex; flex-direction: column; gap: 22px; }
+
+    /* SECTION HEADER */
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .section-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-primary { background: var(--primary); }
+    .dot-secondary { background: var(--secondary); }
+
+    .section-head h3 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .section-head::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, var(--primary), transparent);
+      opacity: 0.15;
+    }
+
+    /* GRID DE 2 COL */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    /* CARD DE MÃDULO */
+    .module-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .module-head {
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .module-head.blue  { background: var(--primary); }
+    .module-head.amber { background: var(--secondary); }
+
+    .module-head h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .module-head.blue  h4 { color: var(--white); }
+    .module-head.amber h4 { color: var(--text); }
+
+    .module-head .total-badge {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 100px;
+    }
+    .module-head.blue  .total-badge { background: rgba(255,255,255,0.15); color: var(--secondary); }
+    .module-head.amber .total-badge { background: rgba(255,255,255,0.4); color: var(--text); }
+
+    .module-rows { }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 14px;
+      border-bottom: 1px solid var(--border);
+      gap: 8px;
+    }
+    .row:last-child { border-bottom: none; }
+    .row:nth-child(even) { background: #FAFAFA; }
+
+    .row-label { font-size: 11px; line-height: 1.4; color: var(--text); flex: 1; }
+    .row-label sup { color: var(--grey); font-size: 9px; }
+
+    .row-pct {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--primary);
+      flex-shrink: 0;
+      min-width: 32px;
+      text-align: right;
+    }
+    .row-pct.amber-pct { color: #8B6000; }
+
+    .subtotal-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 14px;
+      background: #EEF0FF;
+    }
+    .subtotal-row.amber-sub { background: #FFF5E0; }
+    .subtotal-row span:first-child { font-size: 11px; font-weight: 700; color: var(--primary); }
+    .subtotal-row span:last-child  { font-size: 13px; font-weight: 700; color: var(--primary); }
+    .subtotal-row.amber-sub span { color: #8B6000; }
+
+    /* TOTAL BANNER */
+    .total-banner {
+      background: var(--primary);
+      border-radius: 10px;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .total-banner span:first-child {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+    }
+    .total-banner span:last-child {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    /* NOTAS */
+    .notes {
+      display: flex;
+      gap: 12px;
+      background: #F7F7FB;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+    }
+    .note { display: flex; gap: 8px; flex: 1; }
+    .note-num {
+      font-size: 9px; font-weight: 700;
+      background: #EEF0FF;
+      color: var(--primary);
+      border-radius: 4px;
+      padding: 2px 5px;
+      height: fit-content;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .note p { font-size: 9.5px; line-height: 1.5; color: var(--grey); }
+
+    /* SECTION LABEL */
+    .section-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      padding-bottom: 2px;
+      border-bottom: 2px solid var(--secondary);
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 12px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-brand { font-size: 16px; font-weight: 700; color: var(--primary); }
+    .footer-brand em { color: var(--secondary); font-style: normal; }
+    .footer-note { font-size: 9px; color: var(--grey); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    @media print {
+      body { background: white; }
+      .page { margin: 0; border-radius: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-title">
+      <small>Estructura de Comisiones Â· 2025</small>
+      <h1>Esquema <span>Comisional</span> del Agente</h1>
+    </div>
+    <div class="header-brand">deppt<em>Ã¶</em></div>
+  </div>
+
+  <div class="body">
+
+    <!-- ââ EMPRENDIMIENTOS ââ -->
+    <div>
+      <div class="section-head">
+        <div class="section-dot dot-primary"></div>
+        <h3>Emprendimientos en pozo</h3>
+      </div>
+
+      <!-- CaptaciÃ³n -->
+      <div class="section-label">CaptaciÃ³n / ProducciÃ³n</div>
+      <div class="module-card" style="margin-bottom: 12px;">
+        <div class="module-head blue">
+          <h4>CaptaciÃ³n / ProducciÃ³n</h4>
+          <span class="total-badge">Subtotal 15%</span>
+        </div>
+        <div class="module-rows">
+          <div class="row">
+            <span class="row-label">Referir a un Desarrollador</span>
+            <span class="row-pct">10%</span>
+          </div>
+          <div class="row">
+            <span class="row-label">Realizar la captaciÃ³n y preparaciÃ³n inicial para comenzar la comercializaciÃ³n <sup>(1)</sup></span>
+            <span class="row-pct">5%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proceso operativo: 2 columnas -->
+      <div class="section-label">Proceso Operativo y Comercial</div>
+      <div class="grid-2">
+
+        <!-- Cuando publica -->
+        <div class="module-card">
+          <div class="module-head blue">
+            <h4>Publica + consigue comprador</h4>
+            <span class="total-badge">25%</span>
+          </div>
+          <div class="module-rows">
+            <div class="row">
+              <span class="row-label">Carga de avisos al Sistema Tokko Broker</span>
+              <span class="row-pct">5%</span>
+            </div>
+            <div class="row">
+              <span class="row-label">Manejo de listas de precios y disponibilidad</span>
+              <span class="row-pct">5%</span>
+            </div>
+            <div class="row">
+              <span class="row-label">Seguimiento a avances de obra con clientes</span>
+              <span class="row-pct">5%</span>
+            </div>
+            <div class="row">
+              <span class="row-label">Atender consultas y enviar informaciÃ³n</span>
+              <span class="row-pct">5%</span>
+            </div>
+            <div class="row">
+              <span class="row-label">Coordinar y realizar visitas <sup>(2)</sup></span>
+              <span class="row-pct">5%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cuando no publica -->
+        <div class="module-card">
+          <div class="module-head amber">
+            <h4>No publica + consigue comprador</h4>
+            <span class="total-badge">25%</span>
+          </div>
+          <div class="module-rows">
+            <div class="row">
+              <span class="row-label">Conseguir al cliente interesado en el Emprendimiento</span>
+              <span class="row-pct amber-pct">10%</span>
+            </div>
+            <div class="row">
+              <span class="row-label">Coordinar y realizar visitas <sup>(2)</sup></span>
+              <span class="row-pct amber-pct">10%</span>
+            </div>
+            <div class="row">
+              <span class="row-label">Reserva y Cierre de Negocio</span>
+              <span class="row-pct amber-pct">5%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Notas Emprendimientos -->
+      <div class="notes" style="margin-top:10px;">
+        <div class="note">
+          <div class="note-num">1</div>
+          <p>Conseguir y cargar al disco corporativo toda la documentaciÃ³n legal y material comercial, y coordinar con el vendedor (in-house) la forma de trabajo.</p>
+        </div>
+        <div class="note">
+          <div class="note-num">2</div>
+          <p>Se debe coordinar con el AGENTE que sea responsable del Emprendimiento en cuestiÃ³n.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ââ PROPIEDADES USADAS ââ -->
+    <div>
+      <div class="section-head">
+        <div class="section-dot dot-secondary"></div>
+        <h3>Propiedades Usadas</h3>
+      </div>
+
+      <div class="grid-2">
+
+        <!-- CaptaciÃ³n -->
+        <div class="module-card">
+          <div class="module-head blue">
+            <h4>CaptaciÃ³n / ProducciÃ³n</h4>
+            <span class="total-badge">25%</span>
+          </div>
+          <div class="module-rows">
+            <div class="row">
+              <span class="row-label">Referir a un cliente (propietario)</span>
+              <span class="row-pct">15%</span>
+            </div>
+            <div class="row">
+              <span class="row-label">Realizar la captaciÃ³n de la propiedad</span>
+              <span class="row-pct">10%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proceso Operativo -->
+        <div class="module-card">
+          <div class="module-head amber">
+            <h4>Proceso Operativo y Comercial</h4>
+            <span class="total-badge">25%</span>
+          </div>
+          <div class="module-rows">
+            <div class="row">
+              <span class="row-label">AnÃ¡lisis Comparativo de Mercado (ACM)</span>
+              <span class="row-pct amber-pct">5%</span>
+            </div>
+            <div class="row">
+              <span class="row-label">Informe de ACM y Oferta de Servicios</span>
+              <span class="row-pct amber-pct">5%</span>
+            </div>
+            <div class="row">
+              <span class="row-label">Fotos, video, tour virtual y carga en portal <sup>(1)</sup></span>
+              <span class="row-pct amber-pct">5%</span>
+            </div>
+            <div class="row">
+              <span class="row-label">Coordinar visitas e informar al cliente <sup>(2)</sup></span>
+              <span class="row-pct amber-pct">5%</span>
+            </div>
+            <div class="row">
+              <span class="row-label">Mostrar las propiedades <sup>(2)</sup></span>
+              <span class="row-pct amber-pct">5%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Total Propiedades Usadas -->
+      <div class="total-banner" style="margin-top:12px;">
+        <span>Total ComisiÃ³n del Agente â Propiedades Usadas</span>
+        <span>50%</span>
+      </div>
+
+      <!-- Notas Propiedades Usadas -->
+      <div class="notes" style="margin-top:10px;">
+        <div class="note">
+          <div class="note-num">1</div>
+          <p>Si la labor la realiza el AGENTE debe usar buenos equipos y programas de ediciÃ³n que permitan calidad Ã³ptima y cumplir estÃ¡ndares corporativos. Si contrata fotÃ³grafos, deberÃ¡ estar presente.</p>
+        </div>
+        <div class="note">
+          <div class="note-num">2</div>
+          <p>Si participa mÃ¡s de un AGENTE para coordinar visitas o mostrar la propiedad, el porcentaje se dividirÃ¡ entre ellos en funciÃ³n de su participaciÃ³n.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-brand">deppt<em>Ã¶</em> Â· Servicios Inmobiliarios</div>
+    <div class="footer-note">Estructura comisional interna Â· 2025</div>
+  </div>
+
+</div>
+
+</body>
+</html>
